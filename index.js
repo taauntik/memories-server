@@ -15,6 +15,11 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// greeting route
+app.get('/', (req, res) => {
+  res.send("Hello to memories api");
+})
+
 // routing setup
 app.use("/posts", postRoutes);
 
