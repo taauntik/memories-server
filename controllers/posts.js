@@ -73,12 +73,12 @@ export const likePost = async (req, res) => {
     post.likes.push(req.userId);
   } else {
     // dislike post
-    post.likes.filter((id) => id !== String(req.userId));
+    post.likes = post.likes.filter((id) => id !== String(req.userId));
   }
 
   const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
     new: true,
   });
 
-  res.json(updatePost);
+  res.status(200).json(updatedPost);
 };
