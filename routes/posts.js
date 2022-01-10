@@ -1,21 +1,22 @@
-// external imports
 import express from "express";
 
-// internal imports
 import {
   getPosts,
+  getPostsBySearch,
+  getPost,
   createPost,
   updatePost,
-  deletePost,
   likePost,
-  getPostsBySearch
+  deletePost,
 } from "../controllers/posts.js";
-import auth from "../middleware/auth.js";
 
 const router = express.Router();
+import auth from "../middleware/auth.js";
 
-router.get("/", getPosts);
 router.get("/search", getPostsBySearch);
+router.get("/", getPosts);
+router.get("/:id", getPost);
+
 router.post("/", auth, createPost);
 router.patch("/:id", auth, updatePost);
 router.delete("/:id", auth, deletePost);
